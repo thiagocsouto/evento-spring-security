@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,14 +18,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name="usuario")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@ToString @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Builder
 public class Usuario implements Serializable, UserDetails {
 	
 	private static final long serialVersionUID = 1L;
@@ -46,31 +45,6 @@ public class Usuario implements Serializable, UserDetails {
 	
 	@Transient
 	private List<String> role;
-	
-	
-	public Integer getId() {
-		return id;
-	}
-	
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	 public List<String> getRole() {
-			return role;
-		}
-
-		public void setRole(List<String> role) {
-			this.role = role;
-		}
 
 	@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

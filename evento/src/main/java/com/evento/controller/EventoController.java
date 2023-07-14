@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.evento.model.Convidado;
 import com.evento.model.Evento;
 
 import com.evento.service.EventoService;
@@ -22,6 +21,14 @@ public class EventoController {
 	
 	@Autowired
 	private EventoService eventoService;
+	
+	@GetMapping("/listar-eventos")
+	public ModelAndView listaEventos() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("evento/listaEventos");
+		mv.addObject("listarConvidados", eventoService.listarEvento());
+		return mv;  
+	} 
 	
 	@GetMapping("/cadastrar-eventos")
 	public ModelAndView formulario(Evento evento) {
@@ -43,20 +50,6 @@ public class EventoController {
 		eventoService.salvarEvento(evento);
 		return mv;  
 	}
-	
-	@GetMapping("/excluir-eventos/{id}")
-	public String excluirEvento(@PathVariable("id") Integer id) {
-		eventoService.deletarId(id);
-		return "redirect:/listar-eventos";
-	} 
-	
-	@GetMapping("/listar-eventos")
-	public ModelAndView listaEventos() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("evento/listaEventos");
-		mv.addObject("listarConvidados", eventoService.listarEvento());
-		return mv;  
-	} 
 	
 	@GetMapping("/alterar-eventos/{id}")
 	public ModelAndView alterarEvento(@PathVariable("id") Integer id) {
@@ -80,6 +73,11 @@ public class EventoController {
 		return mv;  
 	}
 	
+	@GetMapping("/excluir-eventos/{id}")
+	public String excluirEvento(@PathVariable("id") Integer id) {
+		eventoService.deletarId(id);
+		return "redirect:/listar-eventos";
+	} 
 	
 //	@GetMapping("/{id}")
 //	public ModelAndView detalhesEventosId(@PathVariable("id") Integer id) {

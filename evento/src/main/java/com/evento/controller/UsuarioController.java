@@ -1,22 +1,15 @@
 package com.evento.controller;
 
-import java.security.NoSuchAlgorithmException;
-
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.evento.model.Evento;
 import com.evento.model.Usuario;
-import com.evento.repository.UsuarioRepository;
 
 
 @Controller

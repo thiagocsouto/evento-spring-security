@@ -21,6 +21,14 @@ public class ConvidadoController {
 	@Autowired
 	private ConvidadoService convidadoService;
 	
+	@GetMapping("/lista-convidados")
+	public ModelAndView listaConvidados() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("convidado/listaConvidados");
+		mv.addObject("listarConvidado", convidadoService.listarConvidado());
+		return mv;   
+	} 
+	
 	@GetMapping("/adicionar-convidados")
 	public ModelAndView Adicionar(Convidado convidado) {
 		ModelAndView mv = new ModelAndView();
@@ -43,14 +51,6 @@ public class ConvidadoController {
 		mv.setViewName("redirect:/lista-convidados");
 		return mv;   
 	}
-	
-	@GetMapping("/lista-convidados")
-	public ModelAndView listaConvidados() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("convidado/listaConvidados");
-		mv.addObject("listarConvidado", convidadoService.listarConvidado());
-		return mv;   
-	} 
 	
 	@GetMapping("/alterar-convidados/{id}")
 	public ModelAndView alterarConvidado(@PathVariable("id") Integer id) {

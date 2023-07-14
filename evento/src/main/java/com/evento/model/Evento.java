@@ -14,14 +14,16 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name="evento")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@ToString @Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Builder
 public class Evento implements Serializable{
 
 	
